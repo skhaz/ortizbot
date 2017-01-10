@@ -1,0 +1,31 @@
+runtime: python27
+api_version: 1
+threadsafe: yes
+
+builtins:
+- deferred: on
+- appstats: on
+- remote_api: on
+
+libraries:
+- name: ssl
+  version: latest
+- name: pycrypto
+  version: 2.6
+
+handlers:
+- url: /_ah/queue/deferred
+  script: google.appengine.ext.deferred.deferred.application
+  login: admin
+
+- url: .*
+  script: main.app
+  secure: always
+
+env_variables:
+  GAE_USE_SOCKETS_HTTPLIB: 'anyvalue'
+  TELEGRAM_TOKEN: '317972556:AAGfFewZQnFzKyYa_nTWRzwkdc_2hSXv05o'
+
+# Temporary workaround around gcloud issue
+skip_files:
+  - ^venv/.*$
