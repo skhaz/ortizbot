@@ -11,9 +11,7 @@ from flask import Blueprint, request
 from telegram import Bot, Update
 from telegram.ext import (
     Dispatcher,
-    CommandHandler,
     MessageHandler,
-    CallbackQueryHandler,
     Filters
 )
 
