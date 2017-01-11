@@ -24,7 +24,7 @@ handlers:
 
 env_variables:
   GAE_USE_SOCKETS_HTTPLIB: 'anyvalue'
-  TELEGRAM_TOKEN: '317972556:AAGfFewZQnFzKyYa_nTWRzwkdc_2hSXv05o'
+  TELEGRAM_TOKEN: HIDDEN_TELEGRAM_TOKEN
 
 # Temporary workaround around gcloud issue
 skip_files:
