@@ -39,6 +39,6 @@ deployment:
         branch: master
         commands:
         # Deploy to AppEngine
-        - gcloud -q app deploy app.yaml --promote --version=1
+        - gcloud -q app deploy app.yaml --promote --version=1 --verbosity=debug
 
         - curl -s 'https://$GCLOUD_PROJECT.appspot.com' > /dev/null
