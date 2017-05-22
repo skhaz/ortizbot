@@ -29,11 +29,11 @@ dispatcher = None
 
 
 def reply(bot, update):
-    quotes = [
-        "Hahahaha",
-    ]
-
-    update.message.reply_text(random.choice(quotes))
+    response = 'Então tá baum.'
+    text = update.message.text
+    if '?' in text:
+        response = 'Entendi'
+    update.message.reply_text(response)
 
 
 def error(bot, update, error):
