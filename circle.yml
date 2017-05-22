@@ -15,8 +15,8 @@ dependencies:
 
     # Retrieve our secrets from the CircleCI environment
     - echo $CLIENT_SECRET | base64 --decode > ${HOME}/client-secret.json
-    # - sed  s/YOUR-API-KEY/$API_KEY/ api_key.py.sample > api_key.py
 
+    - echo $CLIENT_SECRET | base64 --decode
     # Vendor our dependencies
     - mkdir -p lib
     - pip install -r requirements.txt -t lib
@@ -26,6 +26,9 @@ dependencies:
     - gcloud auth activate-service-account --key-file ${HOME}/client-secret.json
 
     - gcloud config set project $GCLOUD_PROJECT
+    
+    - sed -i 's/HIDDEN_TELEGRAM_TOKEN/$HIDDEN_TELEGRAM_TOKEN/g' app.yaml
+
 
 test:
   override:
@@ -37,7 +40,6 @@ deployment:
         branch: master
         commands:
         # Deploy to AppEngine
-        - gcloud -q app deploy app.yaml --promote --version=1
+        - gcloud -q app deploy app.yaml --promote --version=1 --verbosity=debug
 
-        # Run our E2E Test
-        # - python e2e_test.py
+        - curl -s 'https://$GCLOUD_PROJECT.appspot.com' > /dev/null
